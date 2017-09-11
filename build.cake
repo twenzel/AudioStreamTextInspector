@@ -3,7 +3,7 @@ var target = Argument("Target", "Default");
 var configuration = Argument("Configuration", "Release");
 
 // GLOBAL VARIABLES
-var artifactsDirectory = Directory("./artifacts");
+var artifactsDirectory = "./artifacts";
 var projectFile = "./src/AudioStreamTextInspector/AudioStreamTextInspector.csproj";
 var IsOnAppVeyorAndNotPR = AppVeyor.IsRunningOnAppVeyor && !AppVeyor.Environment.PullRequest.IsPullRequest;
 
@@ -40,8 +40,8 @@ Task("Build")
       
 
 Task("Pack")
-    .IsDependentOn("Restore")
-    .WithCriteria(IsOnAppVeyorAndNotPR || string.Equals(target, "pack", StringComparison.OrdinalIgnoreCase))
+    .IsDependentOn("Build")
+    .WithCriteria(IsOnAppVeyorAndNotPR || string.Equals(target, "pack", StringComparison.OrdinalIgnoreCase) || string.Equals(target, "push", StringComparison.OrdinalIgnoreCase))
     .Does(() =>
     {
         var settings = new DotNetCorePackSettings
@@ -52,11 +52,25 @@ Task("Pack")
      
         DotNetCorePack(projectFile, settings);       
     });
+	
+Task("Push")
+    .IsDependentOn("Pack")
+    .WithCriteria(IsOnAppVeyorAndNotPR || string.Equals(target, "push", StringComparison.OrdinalIgnoreCase))
+    .Does(() =>
+    {        
+        var settings = new DotNetCoreNuGetPushSettings
+		 {
+			 Source = "https://www.nuget.org/api/v2/package",
+			 ApiKey = EnvironmentVariable("NUGET_API_KEY")
+		 };
+		DotNetCoreNuGetPush("artifacts\\*.nupkg", settings);      
+    });
 
 Task("Default")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
     .IsDependentOn("Build")
-    .IsDependentOn("Pack");
+	.IsDependentOn("Pack")
+    .IsDependentOn("Push");
 
 RunTarget(target);
