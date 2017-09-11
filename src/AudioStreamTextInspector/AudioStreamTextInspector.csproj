@@ -5,10 +5,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Toni Wenzel</Authors>
     <Company>codessentials</Company>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/twenzel/AudioStreamTextInspector</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/twenzel/AudioStreamTextInspector/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/twenzel/AudioStreamTextInspector</RepositoryUrl>
     <Description>Inspects mp3 audio streams and searches for texts/words</Description>
+    <PackageTags>mp3 stream text speech recognision</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

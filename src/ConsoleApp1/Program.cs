@@ -56,7 +56,7 @@ namespace ConsoleApp1
 
         private static void Inspector_OnTextRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            Console.WriteLine($"!!! Recognized text:  {e.Result.Text}, {e.Result.Confidence} {e.Result.Audio.AudioPosition}");
+            Console.WriteLine($"Recognized text:  {e.Result.Text}, {e.Result.Confidence} {e.Result.Audio.AudioPosition}");
         }
 
         //private static void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
