@@ -1,0 +1,16 @@
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+os: Visual Studio 2017
+
+dotnet_csproj:
+  patch: true
+  file: 'src\AudioStreamTextInspector\**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+
+publish_nuget: true
+  
+build_script:
+- ps: .\build.ps1
