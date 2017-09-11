@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Toni Wenzel</Authors>
+    <Company>codessentials</Company>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/twenzel/AudioStreamTextInspector/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/twenzel/AudioStreamTextInspector</RepositoryUrl>
+    <Description>Inspects mp3 audio streams and searches for texts/words</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="1.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Speech">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Speech.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
